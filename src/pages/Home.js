@@ -16,18 +16,11 @@ import "../assets/css/Home.css";
 const navigation = { Home, Favorite, ShoppingCart, History };
 console.log(navigation)
 function App(props) {
-  console.log(props)
-  console.log(props.data.category)
   // const { token } = useParams();
   const [nav, setNav] = React.useState(0);
-  const history = useHistory();
-
   useEffect(() => {
     props.getCategoryProduct();
   }, []);
-
-
-
   return (
     <div className="App">
 
@@ -36,6 +29,7 @@ function App(props) {
           <Grid item xs={8} sm={6} md={4}>
             <Grid container justify="center">
               <Grid item>
+                {/* search input */}
                 <OutlinedInput fullWidth variant="outlined"
                   startAdornment={
                     <InputAdornment position="start">
@@ -66,7 +60,7 @@ function App(props) {
                 <Grid container justify="center" spacing={2}>
                   {props.data.productPromo && props.data.productPromo.map((p, i) =>
                     <Grid key={i} item style={{ display: "inline-block" }} className="card">
-                      <Paper elevation={3}>
+                      <Paper elevation={3} onClick={history.push(`/history/${p.id}`)}>
                         <img src={p.imageUrl} alt={p.title} className="card-img" />
                         <div className="card-text">{p.title}</div>
                       </Paper>
