@@ -3,7 +3,42 @@
   text-align: center;
 }
 .nav{
-  position: absolute;
+  /* position: absolute; */
+  position: fixed;
+  float: bottom;
   bottom: 0;
   width: 98%;
 }
+.img-thumbnail{
+  width: 50px;
+}
+.scrollable{
+  overflow: auto;
+  white-space: nowrap;
+}
+.divider{
+  height: 20px;
+}
+.card > div{
+  padding:20px;
+}
+.card-img{
+  width: 70%;
+  max-height: 130px;
+}
+.card-text{
+  font-size: 1.2em;
+  margin: 20px;
+}
+.end{
+  height: 60px;
+}
+/* .outer{
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.inner {
+  display: inline-block;
+  margin: 5px;
+} */

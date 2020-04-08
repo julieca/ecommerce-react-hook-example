@@ -8,7 +8,7 @@ import {
 import { getCategoryProduct } from '../actions';
 import {
   Grid, OutlinedInput, InputAdornment, BottomNavigation,
-  BottomNavigationAction
+  BottomNavigationAction, Paper
 } from '@material-ui/core';
 import { Home, Favorite, ShoppingCart, History, Search } from '@material-ui/icons';
 import "../assets/css/Home.css";
@@ -34,7 +34,7 @@ function App(props) {
       <div className="App-header">
         <Grid container justify="center" alignItems="center">
           <Grid item xs={8} sm={6} md={4}>
-            <Grid container justify="center" spacing={2}>
+            <Grid container justify="center">
               <Grid item>
                 <OutlinedInput fullWidth variant="outlined"
                   startAdornment={
@@ -43,22 +43,43 @@ function App(props) {
                     </InputAdornment>
                   }
                 />
-                <Grid container justify="center" spacing={2}>
+                <div className="divider"></div>
+                {/* category */}
+                <Grid container justify="center" spacing={2} className="scrollable">
                   {props.data.category && props.data.category.map((c, i) =>
                     <Grid key={i} item>
-                      <img href={c.imageUrl} alt={c.name} />
-                      <span>{c.name}</span>
+                      <img src={c.imageUrl} alt={c.name} className="img-thumbnail" />
+                      <div>{c.name}</div>
                     </Grid>
                   )}
                 </Grid>
-
-
+                {/* <div className="outer">
+                  {props.data.category && props.data.category.map((c, i) =>
+                    <div key={i} className="inner">
+                      <img src={c.imageUrl} alt={c.name} className="img-thumbnail" />
+                      <div>{c.name}</div>
+                    </div>
+                  )}
+                </div> */}
+                <div className="divider"></div>
+                {/* product */}
+                <Grid container justify="center" spacing={2}>
+                  {props.data.productPromo && props.data.productPromo.map((p, i) =>
+                    <Grid key={i} item style={{ display: "inline-block" }} className="card">
+                      <Paper elevation={3}>
+                        <img src={p.imageUrl} alt={p.title} className="card-img" />
+                        <div className="card-text">{p.title}</div>
+                      </Paper>
+                    </Grid>
+                  )}
+                </Grid>
 
 
               </Grid>
             </Grid>
           </Grid>
         </Grid>
+        <div className="end"></div>
         <BottomNavigation showLabels
           className="nav"
           value={nav}
