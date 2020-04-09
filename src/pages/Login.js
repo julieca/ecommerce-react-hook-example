@@ -10,11 +10,10 @@ import {
 import {
   Grid, IconButton, Button, FormGroup,
   FormControlLabel,
-  Checkbox
+  Checkbox, TextField
 } from '@material-ui/core';
-import "../assets/css/Detail.css";
 
-function Detail(props) {
+function Login() {
   const history = useHistory();
   const [remember, setRemember] = React.useState(true);
 
@@ -37,8 +36,8 @@ function Detail(props) {
                 <TextField label="Password" type="password" variant="outlined" />
                 <FormGroup>
                   <FormControlLabel
-                    control={<Checkbox checked={remember} onChange={setRemember(r => !r)} />}
-                    label="Gilad Gray"
+                    control={<Checkbox checked={remember} onChange={() => setRemember(r => !r)} />}
+                    label="Remember me"
                   />
                 </FormGroup>
                 <Button variant="contained" onClick={goToHome}>Login</Button>
@@ -51,4 +50,4 @@ function Detail(props) {
     </div>
   );
 }
-export default Detail;
+export default connect(null, null)(Login);
