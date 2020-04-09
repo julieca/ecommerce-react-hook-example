@@ -5,11 +5,11 @@ import {
 } from "react-router-dom";
 
 
-import { getCategoryProduct, purchase } from '../actions';
+import { getCategoryProduct, purchase, fav } from '../actions';
 import {
-  Grid, Paper, Button
+  Grid, IconButton, Button
 } from '@material-ui/core';
-import { Home, Favorite, ShoppingCart, History, Search } from '@material-ui/icons';
+import { Favorite, ArrowBack } from '@material-ui/icons';
 import "../assets/css/Detail.css";
 
 function Detail(props) {
@@ -38,9 +38,17 @@ function Detail(props) {
       <Grid container justify="center" alignItems="center">
         <Grid item xs={12} sm={9} md={6}>
           <Grid container justify="center">
-            <Grid item>
+            <Grid item className="content">
+              <IconButton aria-label="back" onClick={() => history.goBack()}>
+                <ArrowBack />
+              </IconButton>
               <img src={product.imageUrl} alt={product.title} className="card-img" />
-              <div className="card-text">{product.title}</div>
+              <div className="card-text">
+                {product.title}
+                <IconButton color={product.loved ? "primary" : "default"} aria-label="back" onClick={() => props.fav(product.id)}>
+                  <Favorite />
+                </IconButton>
+              </div>
               <div className="card-desc">{product.description}</div>
               <div className="divider"></div>
               <div className="card-action">
@@ -63,5 +71,6 @@ const mapStateToProps = ({ data }) => {
 const mapDispatchToProps = dispatch => ({
   getCategoryProduct: () => dispatch(getCategoryProduct()),
   purchase: (p) => dispatch(purchase(p)),
+  fav: (id) => dispatch(fav(id)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Detail);
