@@ -2,7 +2,8 @@ import $axios from '../config/axiosInstance';
 import * as url from '../enums/url';
 import {
   GET_DATA,
-  PURCHASE
+  PURCHASE,
+  FAVORITE
 } from '../enums/mutations';
 
 export const getCategoryProduct = () => {
@@ -81,4 +82,10 @@ export const getCategoryProduct = () => {
 export const purchase = (payload) => ({
   type: PURCHASE,
   payload
+});
+
+export const fav = (payload) => ({
+  type: FAVORITE,
+  payload
 })
+

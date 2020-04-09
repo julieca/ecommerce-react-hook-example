@@ -29,7 +29,7 @@ function App(props) {
         <Grid container justify="center" alignItems="center">
           <Grid item xs={12} sm={9} md={6}>
             <Grid container justify="center">
-              <Grid item>
+              <Grid item className="content">
                 {/* search input */}
                 <OutlinedInput fullWidth variant="outlined"
                 onClick={()=>history.push('/search')}
@@ -75,6 +75,9 @@ function App(props) {
             </Grid>
           </Grid>
         </Grid>
+
+
+        
         <div className="end"></div>
         <BottomNavigation showLabels
           className="nav"
@@ -86,11 +89,14 @@ function App(props) {
         >
           <BottomNavigationAction label="Home" icon={<Home />} />
           <BottomNavigationAction label="Favorite" icon={<Favorite />} />
-          <BottomNavigationAction label="ShoppingCart" icon={<ShoppingCart />} />
-          <BottomNavigationAction label="History" icon={<History />} />
+          <BottomNavigationAction label="Cart" icon={<ShoppingCart />} onClick={() => history.push("/history")} />
+          <BottomNavigationAction label="Profile" icon={<History />} />
           {/* {Object.keys(navigation).forEach(i => <BottomNavigationAction key={i} label={i} />)} */}
 
         </BottomNavigation>
+
+
+
       </div>
     </div>
   );

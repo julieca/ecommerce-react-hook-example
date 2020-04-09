@@ -20,6 +20,7 @@ function History(props) {
       <IconButton aria-label="back" onClick={() => history.goBack()}>
         <ArrowBack />
       </IconButton>
+      <span>Purchase History</span>
       <Grid container justify="center" alignItems="center">
         <Grid item xs={12} sm={9} md={6}>
           {props.histories && props.histories.map((h, i) =>

@@ -7,6 +7,8 @@ import Home from './pages/Home';
 import Detail from './pages/Detail';
 import History from './pages/History';
 import Search from './pages/Search' ;
+import Login from './pages/Login';
+
 
 import './App.css';
 const theme = createMuiTheme({
@@ -26,6 +28,8 @@ const App = ({ store }) => (
           <Route path="/detail/:id" component={Detail} />
           <Route path="/history" component={History} />
           <Route path="/search" component={Search} />
+          <Route path="/login" component={Login} />
+
         </Switch>
       </Router>
     </Provider>

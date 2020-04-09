@@ -3,25 +3,23 @@ import {
 } from 'redux'
 import {
   GET_DATA,
-  PURCHASE
+  PURCHASE,
+  FAVORITE
 } from '../enums/mutations'
 
 function histories(state = [], action) {
-  console.log(action)
   const {
     type,
     payload
   } = action
   switch (type) {
     case PURCHASE:
-      console.log(payload)
       return [...state, payload];
     default:
       return state
   }
 }
 function data(state = {}, action) {
-  console.log(action)
   const {
     type,
     payload
@@ -30,6 +28,10 @@ function data(state = {}, action) {
     case GET_DATA:
       state = payload
       return state;
+    case FAVORITE:
+      const i = state.productPromo.findIndex(x => x.id == payload);
+      state.productPromo[i].loved = state.productPromo[i].loved == 1 ? 0 : 1;
+      return { ...state };
     default:
       return state
   }
