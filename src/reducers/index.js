@@ -2,10 +2,26 @@ import {
   combineReducers
 } from 'redux'
 import {
-  GET_DATA
+  GET_DATA,
+  PURCHASE
 } from '../enums/mutations'
 
+function histories(state = [], action) {
+  console.log(action)
+  const {
+    type,
+    payload
+  } = action
+  switch (type) {
+    case PURCHASE:
+      console.log(payload)
+      return [...state, payload];
+    default:
+      return state
+  }
+}
 function data(state = {}, action) {
+  console.log(action)
   const {
     type,
     payload
@@ -19,6 +35,7 @@ function data(state = {}, action) {
   }
 }
 const rootReducer = combineReducers({
-  data
+  data,
+  histories
 })
 export default rootReducer

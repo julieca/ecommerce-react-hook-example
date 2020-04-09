@@ -5,16 +5,16 @@ import {
 } from "react-router-dom";
 
 
-import { getCategoryProduct } from '../actions';
+import { getCategoryProduct, purchase } from '../actions';
 import {
-  Grid, Paper
+  Grid, Paper, Button
 } from '@material-ui/core';
 import { Home, Favorite, ShoppingCart, History, Search } from '@material-ui/icons';
-import "../assets/css/Home.css";
+import "../assets/css/Detail.css";
 
 function Detail(props) {
   const { id } = useParams();
-  const [product, setProduct] = React.useState();
+  const [product, setProduct] = React.useState({});
   const history = useHistory();
 
   useEffect(() => {
@@ -23,27 +23,32 @@ function Detail(props) {
     }
   }, []);
   useEffect(() => {
-    if (props.data.productPromo && !product) {
+    if (props.data.productPromo && Object.keys(product).length == 0) {
       const selected = props.data.productPromo.find(p => p.id == id);
       if (selected) {
-        setProduct(selected)
+        setProduct(selected);
       }
     }
   });
 
 
   return (
+    // 
     <div>
       <Grid container justify="center" alignItems="center">
-        <Grid item xs={8} sm={6} md={4}>
+        <Grid item xs={12} sm={9} md={6}>
           <Grid container justify="center">
             <Grid item>
-              <Paper elevation={3}>
-                <img src={product.imageUrl} alt={product.title} className="card-img" />
-                <div className="card-text">{product.title}</div>
-                <div>{product.description}</div>
-                <div>{product.price}</div>
-              </Paper>
+              <img src={product.imageUrl} alt={product.title} className="card-img" />
+              <div className="card-text">{product.title}</div>
+              <div className="card-desc">{product.description}</div>
+              <div className="divider"></div>
+              <div className="card-action">
+                <span>{product.price}</span>
+                <Button variant="contained" color="primary" disableElevation onClick={() => { props.purchase(product); history.push('/history'); }}>
+                  Buy
+                </Button>
+              </div>
             </Grid>
           </Grid>
         </Grid>
@@ -52,10 +57,11 @@ function Detail(props) {
   );
 }
 
-const mapStateToProps = state => {
-  return state
-};
+const mapStateToProps = ({ data }) => {
+  return { data }
+}
 const mapDispatchToProps = dispatch => ({
-  getCategoryProduct: () => dispatch(getCategoryProduct())
+  getCategoryProduct: () => dispatch(getCategoryProduct()),
+  purchase: (p) => dispatch(purchase(p)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Detail);

@@ -16,6 +16,7 @@ import "../assets/css/Home.css";
 const navigation = { Home, Favorite, ShoppingCart, History };
 console.log(navigation)
 function App(props) {
+  let history = useHistory();
   // const { token } = useParams();
   const [nav, setNav] = React.useState(0);
   useEffect(() => {
@@ -26,7 +27,7 @@ function App(props) {
 
       <div className="App-header">
         <Grid container justify="center" alignItems="center">
-          <Grid item xs={8} sm={6} md={4}>
+          <Grid item xs={12} sm={9} md={6}>
             <Grid container justify="center">
               <Grid item>
                 {/* search input */}
@@ -60,7 +61,7 @@ function App(props) {
                 <Grid container justify="center" spacing={2}>
                   {props.data.productPromo && props.data.productPromo.map((p, i) =>
                     <Grid key={i} item style={{ display: "inline-block" }} className="card">
-                      <Paper elevation={3} onClick={history.push(`/history/${p.id}`)}>
+                      <Paper elevation={3} onClick={() => history.push(`/detail/${p.id}`)}>
                         <img src={p.imageUrl} alt={p.title} className="card-img" />
                         <div className="card-text">{p.title}</div>
                       </Paper>
@@ -90,12 +91,12 @@ function App(props) {
 
         </BottomNavigation>
       </div>
-    </div >
+    </div>
   );
 }
 
-const mapStateToProps = state => {
-  return state
+const mapStateToProps = ({ data }) => {
+  return { data }
 };
 const mapDispatchToProps = dispatch => ({
   getCategoryProduct: () => dispatch(getCategoryProduct())
