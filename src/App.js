@@ -6,6 +6,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Home from './pages/Home';
 import Detail from './pages/Detail';
 import History from './pages/History';
+import Search from './pages/Search' ;
 
 import './App.css';
 const theme = createMuiTheme({
@@ -24,6 +25,7 @@ const App = ({ store }) => (
           <Route path="/home" component={Home} />
           <Route path="/detail/:id" component={Detail} />
           <Route path="/history" component={History} />
+          <Route path="/search" component={Search} />
         </Switch>
       </Router>
     </Provider>

@@ -32,6 +32,7 @@ function App(props) {
               <Grid item>
                 {/* search input */}
                 <OutlinedInput fullWidth variant="outlined"
+                onClick={()=>history.push('/search')}
                   startAdornment={
                     <InputAdornment position="start">
                       <Search />
